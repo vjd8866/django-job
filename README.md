@@ -13,3 +13,8 @@ password: admin
 follow link for db config
 
 https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-14-04
+
+
+notes:
+
+https://github.com/wsvincent/awesome-django#content-management-systems
