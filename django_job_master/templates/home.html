@@ -17,7 +17,8 @@ Home
                     <h1 class="text-white font-weight-bold">A Powerful Career Website Template</h1>
                     <p>Find your dream jobs in our powerful career website template.</p>
                 </div>
-                <form method="post" class="search-jobs-form">
+                <form method="post" class="search-jobs-form" action="{% url 'job_portal:search_job' %}">
+                    {% csrf_token %}
                     <div class="row mb-5">
                         <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                             <input type="text" class="form-control form-control-lg"

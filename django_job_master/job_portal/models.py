@@ -1,5 +1,7 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 from django.utils import timezone
+User = get_user_model()
 
 
 JOB_TYPE = (
@@ -25,3 +27,9 @@ class Job(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Applicant(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='applicants')
+    created_at = models.DateTimeField(default=timezone.now)
