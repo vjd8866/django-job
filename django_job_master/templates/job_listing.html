@@ -33,42 +33,72 @@
         </div>
 
         <div class="mb-5">
-            {% for job in jobs %}
-                <div class="row align-items-start job-item border-bottom pb-3 mb-3 pt-3">
-                    <div class="col-md-2">
-                        <a href="job-single.html"><img src="{% static 'images/featured-listing-1.jpg' %}" alt="Image"
-                                                       class="img-fluid"></a>
+            {% for job in object_list %}
+                <form action="{% url 'jobs:apply_job' %}" method="post">
+                    {% csrf_token %}
+                    <div class="row align-items-start job-item border-bottom pb-3 mb-3 pt-3">
+                        <div class="col-md-2">
+                            <a href="job-single.html"><img src="{% static 'images/featured-listing-1.jpg' %}" alt="Image"
+                                                           class="img-fluid"></a>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="badge badge-primary px-2 py-1 mb-3">Freelancer</span>
+                            <h2><a href="job-single.html">{{ job }}</a></h2>
+                            <p class="meta">Publisher: <strong>John Stewart</strong> In: <strong>Design</strong></p>
+                        </div>
+                        <div class="col-md-3 text-left">
+                            <h3>Melbourn</h3>
+                            <span class="meta">Australia</span>
+                        </div>
+                        <div class="col-md-3 text-md-right">
+                            <strong class="text-black">$60k &mdash; $100k</strong>
+                            <input type="hidden" name="job" value="{{ job.id }}">
+                            <div class="ml-auto">
+                                <a href=""
+                                   class="btn btn-primary"><span
+                                        class="mr-2"></span>Apply</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <span class="badge badge-primary px-2 py-1 mb-3">Freelancer</span>
-                        <h2><a href="job-single.html">{{ job }}</a></h2>
-                        <p class="meta">Publisher: <strong>John Stewart</strong> In: <strong>Design</strong></p>
-                    </div>
-                    <div class="col-md-3 text-left">
-                        <h3>Melbourn</h3>
-                        <span class="meta">Australia</span>
-                    </div>
-                    <div class="col-md-3 text-md-right">
-                        <strong class="text-black">$60k &mdash; $100k</strong>
-                    </div>
-                </div>
+                </form>
             {% endfor %}
         </div>
 
+<!--        <div class="row pagination-wrap">-->
+<!--            <div class="col-md-6 text-center text-md-left">-->
+<!--                <div class="custom-pagination ml-auto">-->
+<!--                    <a href="#" class="prev">Previous</a>-->
+<!--                    <div class="d-inline-block">-->
+<!--                        <a href="#" class="active">1</a>-->
+<!--                        <a href="#">2</a>-->
+<!--                        <a href="#">3</a>-->
+<!--                        <a href="#">4</a>-->
+<!--                    </div>-->
+<!--                    <a href="#" class="next">Next</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
         <div class="row pagination-wrap">
-            <div class="col-md-6 text-center text-md-left">
+             <div class="col-md-6 text-center text-md-left">
                 <div class="custom-pagination ml-auto">
-                    <a href="#" class="prev">Previous</a>
-                    <div class="d-inline-block">
-                        <a href="#" class="active">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                    </div>
-                    <a href="#" class="next">Next</a>
+                {% if page_obj.has_previous %}
+                    <a href="?page=1" class="prev">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="prev">previous</a>
+                {% endif %}
+
+                <div class="d-inline-block">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
                 </div>
-            </div>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="next">Next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="next">last &raquo;</a>
+                {% endif %}
+                </div>
+             </div>
         </div>
+
 
     </div>
 </section>

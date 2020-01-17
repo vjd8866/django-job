@@ -37,9 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'job_portal.apps.JobPortalConfig',
-    'users.apps.UsersConfig'
+    'job_portal',
+    'users'
 ]
 
 MIDDLEWARE = [
