@@ -12,3 +12,9 @@ class CreateJobForm(forms.ModelForm):
             "company_name": "Company Name",
             "company_description": "Company Description"
         }
+
+
+class ApplyJobForm(forms.ModelForm):
+    class Meta:
+        model = models.Applicant
+        fields = ('job',)
