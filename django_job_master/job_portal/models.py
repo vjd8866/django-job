@@ -10,6 +10,11 @@ JOB_TYPE = (
     ('3', "Internship"),
 )
 
+APPLIED = (
+    ('0', "No"),
+    ('1', "Yes"),
+)
+
 
 class Job(models.Model):
     title = models.CharField(max_length=300)
@@ -33,3 +38,4 @@ class Applicant(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='applicants')
     created_at = models.DateTimeField(default=timezone.now)
+    is_applied = models.CharField(choices=APPLIED, max_length=10)
