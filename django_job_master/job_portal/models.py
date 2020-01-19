@@ -39,3 +39,4 @@ class Applicant(models.Model):
     job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='applicants')
     created_at = models.DateTimeField(default=timezone.now)
     is_applied = models.CharField(choices=APPLIED, max_length=10)
+    file = models.FileField()
