@@ -53,22 +53,23 @@ class JobListView(ListView):
         return context
 
 
-class ApplyJobView(CreateView):
+class SubmitJobView(CreateView):
     model = Applicant
     form_class = ApplyJobForm
     slug_field = 'job_id'
     slug_url_kwarg = 'job_id'
 
     def get_context_data(self, **kwargs):
-        context = super(ApplyJobView, self).get_context_data(**kwargs)
+        context = super(SubmitJobView, self).get_context_data(**kwargs)
         context['instance_class'] = self.model
         return context
 
     def post(self, request, *args, **kwargs):
-        form = self.get_form()
-        if form.is_valid():
-            messages.info(self.request, 'Successfully applied for the job!')
-            return self.form_valid(form)
+        print("")
+        # form = self.get_form()
+        # if form.is_valid():
+        #     messages.info(self.request, 'Successfully applied for the job!')
+        #     return self.form_valid(form)
 
     def get_success_url(self):
         return reverse_lazy('job_portal:jobs-detail', kwargs={'id': self.kwargs['job_id']})

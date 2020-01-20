@@ -24,24 +24,12 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 mb-5 mb-lg-0">
-                <form action="#" class="">
-
+                <form action="{% url 'job_portal:submit_job' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <div class="row form-group">
                         <div class="col-md-6 mb-3 mb-md-0">
-                            <label class="text-black" for="fname">First Name</label>
-                            <input type="text" id="fname" class="form-control">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="text-black" for="lname">Last Name</label>
-                            <input type="text" id="lname" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-
-                        <div class="col-md-12">
-                            <label class="text-black" for="email">Email</label>
-                            <input type="email" id="email" class="form-control">
+                            <label class="text-black" for="file_resume">Upload Resume</label>
+                            <input type="file" id="file_resume" class="form-control">
                         </div>
                     </div>
 
@@ -50,7 +38,6 @@
                             <input type="submit" value="Submit" class="btn btn-primary btn-md text-white">
                         </div>
                     </div>
-
 
                 </form>
             </div>
